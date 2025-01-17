@@ -1,44 +1,47 @@
+"use client"
+
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Bed, Users, Bath, Wifi, AirVent } from 'lucide-react';
+import { Bed, Users, Bath, Wifi } from 'lucide-react';
 
 const rooms = [
   {
     id: 1,
-    name: 'Twin ',
-    description: 'A large with  a large bed',
-    price: 500,
+    name: 'Deluxe Forest Suite',
+    description: 'Luxurious suite with panoramic forest views',
+    price: 450,
     image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427',
-    amenities: ['King Bed', 'Aircon', 'Hot Bath', 'Free Wi-Fi'],
+    amenities: ['King Bed', '2-4 Guests', 'En-suite Bath', 'Free Wi-Fi'],
     size: '55m²',
   },
   {
     id: 2,
-    name: 'King',
-    description: 'Spacious room perfect for anyone',
-    price: 600,
+    name: 'Lake View Room',
+    description: 'Elegant room overlooking the serene lake',
+    price: 350,
     image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a',
-    amenities: ['King Bed',  'Aircon', 'Hot Bath', 'Free Wi-Fi'],
+    amenities: ['Queen Bed', '2 Guests', 'En-suite Bath', 'Free Wi-Fi'],
+    size: '40m²',
   },
   {
     id: 3,
-    name: 'Queen',
+    name: 'Family Cottage',
     description: 'Spacious cottage perfect for families',
-    price: 500,
+    price: 650,
     image: 'https://images.unsplash.com/photo-1587985064135-0366536eab42',
-    amenities: ['Queen-size Bed',  'Aircon', 'Hot Bath', 'Free Wi-Fi'],
-  },
-  {
-    id: 4,
-    name: 'Double',
-    description: 'Spacious cottage perfect for families',
-    price: 400,
-    image: 'https://images.unsplash.com/photo-1587985064135-0366536eab42',
-    amenities: ['Double Bed',  'Aircon', 'Hot Bath', 'Free Wi-Fi'],
+    amenities: ['2 Bedrooms', '4-6 Guests', '2 Bathrooms', 'Free Wi-Fi'],
+    size: '85m²',
   },
 ];
 
-export default function Rooms() {
+export default function RoomsPage() {
+  const router = useRouter();
+
+  const handleBookNow = (room) => {
+    router.push(`/book/${room.id}`);
+  };
+
   return (
     <div className="pt-16 min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -66,7 +69,7 @@ export default function Rooms() {
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-semibold">{room.name}</h3>
                   <p className="text-green-700 dark:text-green-400 font-bold">
-                    K{room.price}/night
+                    ${room.price}/night
                   </p>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -76,16 +79,19 @@ export default function Rooms() {
                   {room.amenities.map((amenity, index) => (
                     <div key={index} className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                       {index === 0 && <Bed className="w-4 h-4 mr-2" />}
-                      {index === 1 && <AirVent className="w-4 h-4 mr-2" />}
+                      {index === 1 && <Users className="w-4 h-4 mr-2" />}
                       {index === 2 && <Bath className="w-4 h-4 mr-2" />}
                       {index === 3 && <Wifi className="w-4 h-4 mr-2" />}
                       {amenity}
                     </div>
                   ))}
                 </div>
-                {/* <Button className="w-full bg-green-700 hover:bg-green-800 text-white">
+                <Button 
+                  className="w-full bg-green-700 hover:bg-green-800 text-white"
+                  onClick={() => handleBookNow(room)}
+                >
                   Book Now
-                </Button> */}
+                </Button>
               </div>
             </div>
           ))}
