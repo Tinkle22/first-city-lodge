@@ -41,7 +41,14 @@ export function generateStaticParams() {
   }));
 }
 
-export default function BookingPage({ params }) {
+type BookingPageProps = {
+  params: {
+    roomId: string
+  }
+}
+
+
+export default function BookingPage({ params }: BookingPageProps) {
   const roomId = params.roomId;
 
   // Find the selected room

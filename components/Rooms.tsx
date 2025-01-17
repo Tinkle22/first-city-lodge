@@ -1,41 +1,46 @@
-"use client"
-
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Bed, Users, Bath, Wifi } from 'lucide-react';
+"use client";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Bed, AirVent, Bath, Wifi } from "lucide-react";
 
 const rooms = [
   {
     id: 1,
-    name: 'Deluxe Forest Suite',
-    description: 'Luxurious suite with panoramic forest views',
-    price: 450,
-    image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427',
-    amenities: ['King Bed', '2-4 Guests', 'En-suite Bath', 'Free Wi-Fi'],
-    size: '55m²',
+    name: "Twin ",
+    description: "A large with  a large bed",
+    price: 500,
+    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427",
+    amenities: ["King Bed", "Aircon", "Hot Bath", "Free Wi-Fi"],
+    size: "55m²",
   },
   {
     id: 2,
-    name: 'Lake View Room',
-    description: 'Elegant room overlooking the serene lake',
-    price: 350,
-    image: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a',
-    amenities: ['Queen Bed', '2 Guests', 'En-suite Bath', 'Free Wi-Fi'],
-    size: '40m²',
+    name: "King",
+    description: "Spacious room perfect for anyone",
+    price: 600,
+    image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a",
+    amenities: ["King Bed", "Aircon", "Hot Bath", "Free Wi-Fi"],
   },
   {
     id: 3,
-    name: 'Family Cottage',
-    description: 'Spacious cottage perfect for families',
-    price: 650,
-    image: 'https://images.unsplash.com/photo-1587985064135-0366536eab42',
-    amenities: ['2 Bedrooms', '4-6 Guests', '2 Bathrooms', 'Free Wi-Fi'],
-    size: '85m²',
+    name: "Queen",
+    description: "Spacious cottage perfect for families",
+    price: 500,
+    image: "https://images.unsplash.com/photo-1587985064135-0366536eab42",
+    amenities: ["Queen-size Bed", "Aircon", "Hot Bath", "Free Wi-Fi"],
+  },
+  {
+    id: 4,
+    name: "Double",
+    description: "Spacious cottage perfect for families",
+    price: 400,
+    image: "https://images.unsplash.com/photo-1587985064135-0366536eab42",
+    amenities: ["Double Bed", "Aircon", "Hot Bath", "Free Wi-Fi"],
   },
 ];
 
-export default function RoomsPage() {
+export default function Rooms() {
   const router = useRouter();
 
   const handleBookNow = (room) => {
@@ -50,13 +55,17 @@ export default function RoomsPage() {
             Rooms & Suites
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Choose from our selection of luxurious accommodations, each designed to provide the perfect blend of comfort and natural beauty
+            Choose from our selection of luxurious accommodations, each designed
+            to provide the perfect blend of comfort and natural beauty
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {rooms.map((room) => (
-            <div key={room.id} className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <div
+              key={room.id}
+              className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+            >
               <div className="relative h-64">
                 <Image
                   src={room.image}
@@ -69,7 +78,7 @@ export default function RoomsPage() {
                 <div className="flex justify-between items-start mb-4">
                   <h3 className="text-xl font-semibold">{room.name}</h3>
                   <p className="text-green-700 dark:text-green-400 font-bold">
-                    ${room.price}/night
+                    K{room.price}/night
                   </p>
                 </div>
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
@@ -77,16 +86,19 @@ export default function RoomsPage() {
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   {room.amenities.map((amenity, index) => (
-                    <div key={index} className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                    <div
+                      key={index}
+                      className="flex items-center text-sm text-gray-500 dark:text-gray-400"
+                    >
                       {index === 0 && <Bed className="w-4 h-4 mr-2" />}
-                      {index === 1 && <Users className="w-4 h-4 mr-2" />}
+                      {index === 1 && <AirVent className="w-4 h-4 mr-2" />}
                       {index === 2 && <Bath className="w-4 h-4 mr-2" />}
                       {index === 3 && <Wifi className="w-4 h-4 mr-2" />}
                       {amenity}
                     </div>
                   ))}
                 </div>
-                <Button 
+                <Button
                   className="w-full bg-green-700 hover:bg-green-800 text-white"
                   onClick={() => handleBookNow(room)}
                 >
